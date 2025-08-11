@@ -10,6 +10,15 @@ document.addEventListener('DOMContentLoaded', function(){
     return;
   }
 
+  ['.site-header','.nav-toggle','#site-menu','.nav-backdrop'].forEach(s=>{
+  console.log(s, !!document.querySelector(s));
+});
+
+  console.log('JSは生きてる？');
+
+  document.querySelector('.site-header').classList.add('nav-open');
+
+
   function lock(){ document.documentElement.style.overflow = 'hidden'; }
   function unlock(){ document.documentElement.style.overflow = ''; }
   function open(){
@@ -41,3 +50,4 @@ document.addEventListener('DOMContentLoaded', function(){
     if(window.innerWidth > 900 && header.classList.contains('nav-open')) close();
   });
 });
+
