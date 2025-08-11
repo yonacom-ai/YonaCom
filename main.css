@@ -294,6 +294,9 @@ a.btn:hover {
 
 /* 余白ちょい足し（任意） */
 .policy-btn { margin-top: .4rem; }
+#policy p { margin-bottom: 0.8rem; }
+#policy .btn { margin-top: 8px; }
+
 
 
 
