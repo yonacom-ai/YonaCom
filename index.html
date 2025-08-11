@@ -47,39 +47,81 @@
   <a class="brand" href="./">YONASHI COMPOTE</a>
 
   <!-- ハンバーガー（右上固定） -->
-  <button class="nav-toggle" aria-controls="site-menu" aria-expanded="false" aria-label="メニュー">
-    <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-    </svg>
-  </button>
+ <!-- ハンバーガー -->
+<button class="nav-toggle" aria-controls="site-menu" aria-expanded="false" aria-label="メニュー">
+  <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+</button>
 
-  <!-- ナビ（PC横並び／SPドロワー） -->
-  <nav id="site-menu" class="nav" aria-label="メイン" aria-hidden="true">
-    <a href="#about">自己紹介</a>
-    <a href="#roles">肩書・スキル</a>
-    <a href="#co-create">共創研究について</a>
-    <a href="#projects">プロジェクト</a>
-    <a href="#policy">ポリシー</a>
-    <a href="#sns">SNS</a>
-    <a href="#contact">お問い合せ</a>
-  </nav>
+<!-- ナビ -->
+<nav id="site-menu" class="nav" aria-label="メイン" aria-hidden="true">
+  <a href="#about">自己紹介</a>
+  <a href="#roles">肩書・スキル</a>
+  <a href="#co-create">共創研究について</a>
+  <a href="#projects">プロジェクト</a>
+  <a href="#policy">ポリシー</a>
+  <a href="#sns">SNS</a>
+  <a href="#contact">お問い合せ</a>
+</nav>
 
-  <!-- 背景（クリックで閉じる） -->
-  <div class="nav-backdrop" hidden></div>
+<!-- 背景 -->
+<div class="nav-backdrop" hidden></div>
 
-  <script>
-  document.addEventListener('DOMContentLoaded',function(){
-    var h=document.querySelector('.site-header');
-    var b=document.querySelector('.nav-toggle');
-    var n=document.querySelector('#site-menu');
-    var d=document.querySelector('.nav-backdrop');
-    if(!b||!n||!d){console.warn('要素不足');return;}
-    function open(){ h.classList.add('nav-open'); d.hidden=false; }
-    function close(){ h.classList.remove('nav-open'); d.hidden=true; }
-    b.addEventListener('click', ()=> h.classList.contains('nav-open')?close():open());
-    d.addEventListener('click', close);
+<style>
+.nav {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 80vw;
+  height: 100dvh;
+  background: #fff;
+  transform: translateX(100%);
+  transition: .25s;
+  z-index: 1000;
+}
+.site-header.nav-open .nav {
+  transform: translateX(0);
+}
+.nav-toggle {
+  position: fixed;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1100;
+}
+.nav-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+  z-index: 900;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const header = document.querySelector('.site-header');
+  const toggleBtn = document.querySelector('.nav-toggle');
+  const backdrop = document.querySelector('.nav-backdrop');
+
+  function openNav() {
+    header.classList.add('nav-open');
+    backdrop.hidden = false;
+  }
+  function closeNav() {
+    header.classList.remove('nav-open');
+    backdrop.hidden = true;
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    header.classList.contains('nav-open') ? closeNav() : openNav();
   });
-  </script>
+  backdrop.addEventListener('click', closeNav);
+});
+</script>
+
   <!-- HTML内どこか（header内）に存在すること -->
 <button class="nav-toggle">☰</button>
 <nav id="site-menu" class="nav">メニュー</nav>
@@ -205,6 +247,7 @@ AIとの「共創」という体験を、研究・発信しています。<br>
 <script src="main.js" defer></script>
 </body>
 </html>
+
 
 
 
