@@ -234,6 +234,27 @@ h3{ margin:28px 0 12px }
   .site-header.nav-open #site-menu{ transform: translateX(0) !important; }
 }
 
+/* ボタンが他の a スタイルに負けないように、a.btn にして強度UP */
+a.btn {
+  display: inline-block;
+  padding: 0.8rem 1.4rem;
+  background: var(--brand);
+  color: #fff !important;                /* リンク色の上書きを防ぐ */
+  border: 0;
+  border-radius: 999px;
+  text-decoration: none !important;      /* 下線系の上書きを防ぐ */
+  box-shadow: var(--shadow);
+  transition: background .2s ease, transform .2s ease;
+}
+a.btn:hover {
+  background: var(--brand-ink);
+  transform: translateY(-2px);
+}
+
+/* 余白ちょい足し（任意） */
+.policy-btn { margin-top: .4rem; }
+
+
 .sns-buttons {
   display: flex;
   flex-wrap: wrap;
@@ -271,5 +292,6 @@ h3{ margin:28px 0 12px }
 .sns-buttons i {
   font-size: 1.2em;
 }
+
 
 
