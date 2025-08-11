@@ -35,3 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // メニュー内リンクで閉じる
   nav.addEventListener('click', e => { if(e.target.closest('a')) close(); });
 });
+
+document.querySelectorAll('#site-menu a').length
+
