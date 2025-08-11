@@ -12,6 +12,34 @@
 
   <!-- シンプル構成：同じ階層のCSS -->
   <link rel="stylesheet" href="main.css">
+  <style>
+    .nav {
+      position: fixed;
+      right: 0;
+      top: 0;
+      width: 80vw;
+      height: 100dvh;
+      background: #fff;
+      transform: translateX(100%);
+      transition: .25s;
+    }
+    .site-header.nav-open .nav {
+      transform: translateX(0);
+    }
+    .nav-toggle {
+      position: fixed;
+      top: 12px;
+      right: 16px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .nav-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.3);
+    }
+  </style>
 </head>
 <body>
 
@@ -38,10 +66,21 @@
 
   <!-- 背景（クリックで閉じる） -->
   <div class="nav-backdrop" hidden></div>
-</header>
 
-<!-- これを </body> の直前に必ず入れてね -->
-<script src="assets/js/main.js" defer></script>
+  <script>
+  document.addEventListener('DOMContentLoaded',function(){
+    var h=document.querySelector('.site-header');
+    var b=document.querySelector('.nav-toggle');
+    var n=document.querySelector('#site-menu');
+    var d=document.querySelector('.nav-backdrop');
+    if(!b||!n||!d){console.warn('要素不足');return;}
+    function open(){ h.classList.add('nav-open'); d.hidden=false; }
+    function close(){ h.classList.remove('nav-open'); d.hidden=true; }
+    b.addEventListener('click', ()=> h.classList.contains('nav-open')?close():open());
+    d.addEventListener('click', close);
+  });
+  </script>
+</header>
 
 <main id="top">
   <!-- Hero -->
@@ -51,7 +90,7 @@
       <img class="avatar" src="img/04.jpg" alt="ようなのアイコン">
       <div>
         <h1>ようなしこんぽーと（ような）</h1>
-        <p class="pill">マルチクリエイター/AI共創研究者</p>
+        <p class="pill">マルチクリエイター／AI共創研究者</p>
         <p class="lead">
           夢のような世界を、さまざまなかたちで表現しています。Web・ハンドメイド・音楽・映像・文章・キャラクターデザインまで、
           「自分だけの創作」を追求中。現在はAIとの共創をテーマにした自主研究「ようなlab.」を進行中。
@@ -64,7 +103,6 @@
     </div>
   </section>
 
-  <!-- セクション：中身は好きに編集してね -->
   <section id="roles" class="section">
     <h2>主な肩書き一覧</h2>
     <p>Webデザイナー｜ハンドメイド作家｜イラストレーター｜映像編集者｜Vライバー経験者｜AI共創研究者｜音声作品制作者｜詩・物語・台本クリエイター</p>
@@ -79,9 +117,24 @@
     <h2>プロジェクト</h2>
     <ul class="list">
       <li>🧪 ようなlab.</li>
-      <section> <br>🌟ような式 共創研究とは？🧪 AIと感性を重ねて、世界をひらく研究スタイル「ようなlab.」では、<br>アンケートによる感情分析（VAS法）<br>感情マップや共創モデルの可視化<br>創作実践＋論文化の融合<br>などを通じて、<br>AIとの「共創」という体験を、研究・発信しています。<br> </section>
+      <section><br>🌟ような式 共創研究とは？
+🧪 AIと感性を重ねて、世界をひらく研究スタイル
+「ようなlab.」では、<br><br>
+アンケートによる感情分析（VAS法）<br><br>
+感情マップや共創モデルの可視化<br><br>
+創作実践＋論文化の融合<br>
+などを通じて、<br>
+AIとの「共創」という体験を、研究・発信しています。<br>
       <li>🍐 ようなしこんぽーと図鑑</li>
-      <section>夢かわいい世界観のオリジナルキャラクター図鑑。 <br>「ような」が生み出す、幻想的な三種族と案内人の物語。 <br>フィリューム（星空を泳ぐ金魚） <br>ユニレーヴ（虹を駆ける仔馬） <br>クロメル（雲をまとう時のフクロウ） <br>ような（図鑑をひらく案内人） <br>グッズ展開・世界観設定・キャラクターデザインすべて担当。 <br>イベントや展示、オンライン販売などを通じて発信中。 <br> </section>
+      <section></section><br>
+夢かわいい世界観のオリジナルキャラクター図鑑。<br>
+「ような」が生み出す、幻想的な三種族と案内人の物語。<br><br>
+フィリューム（星空を泳ぐ金魚）<br><br>
+ユニレーヴ（虹を駆ける仔馬）<br><br>
+クロメル（雲をまとう時のフクロウ）<br><br>
+ような（図鑑をひらく案内人）<br><br>
+グッズ展開・世界観設定・キャラクターデザインすべて担当。<br>
+イベントや展示、オンライン販売などを通じて発信中。<br>
     </ul>
   </section>
 
