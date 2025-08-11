@@ -1,131 +1,158 @@
+/* ========== Theme Vars ========== */
 :root{
-  --bg:#fff8fe; --bg-alt:#f9f5ff; --ink:#2a2333; --muted:#6c5a7a;
-  --brand:#b48ad6; --brand-ink:#452a64;
-  --radius:1.25rem; --shadow:0 8px 24px rgba(69,42,100,.12);
-  --max:1100px; --nav-h:64px;
+  --bg:#fff8fe;
+  --bg-alt:#f9f5ff;
+  --ink:#2a2333;
+  --muted:#6c5a7a;
+  --brand:#b48ad6;
+  --brand-ink:#452a64;
+  --radius:1.25rem;
+  --shadow:0 8px 24px rgba(69,42,100,.12);
+  --max:1100px;
+
+  --gap-sec:64px;
+  --gap-h2-top:32px;
+  --gap-h2-bottom:16px;
+
+  --nav-h:64px; /* ヘッダー高さ（HTMLと合わせる） */
 }
 
-/* Base */
+/* ========== Base ========== */
 *{ box-sizing:border-box }
-html,body{ height:100% } html{ scroll-behavior:smooth }
+html,body{ height:100% }
+html{ scroll-behavior:smooth }
 body{
-  margin:0; font:16px/1.8 'M PLUS Rounded 1c','Noto Sans JP',system-ui,-apple-system,Segoe UI,Roboto,Arial;
-  color:var(--ink); background:var(--bg);
-  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  margin:0;
+  font-size:16px;
+  line-height:1.8;
+  font-family:'M PLUS Rounded 1c','Noto Sans JP',system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+  color:var(--ink);
+  background:var(--bg);
+  text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
 }
-a{ color:var(--brand-ink) } a:hover{ color:var(--brand) }
-p{ margin:0 0 1.1rem } ul{ margin:.4rem 0 1.2rem 1.2rem }
+p{ margin:0 0 1.2em }
+ul,ol{ padding-left:1.4rem; margin:0 0 1.2em }
+li{ margin-bottom:.6em }
 
-/* Layout */
 main{ max-width:var(--max); margin:0 auto; padding:0 16px; padding-top:var(--nav-h) }
-.section{ padding:64px 0 } .section.alt{ background:var(--bg-alt); border-radius:var(--radius) }
-h1{ font-size:clamp(28px,4vw,44px); margin:.2rem 0 1rem }
-h2{ font-size:clamp(22px,3vw,30px); margin:0 0 16px }
-.lead{ color:var(--muted) }
-.pill{ display:inline-block; padding:.35rem .7rem; border:1px solid #e5d8ff; border-radius:999px; background:#fff; color:var(--brand-ink) }
-.btn{
-  display:inline-block; padding:.75rem 1.5rem; border-radius:999px;
-  background:var(--brand); color:#fff; text-decoration:none; box-shadow:var(--shadow); font-weight:700;
-  transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
-}
-.btn:hover{ transform:translateY(-2px); box-shadow:0 10px 28px rgba(69,42,100,.18); background:var(--brand-ink) }
-.btn.ghost{ background:transparent; color:var(--brand-ink); border:1px solid #e5d8ff }
-.cta{ margin-top:12px }
+section{ scroll-margin-top: calc(var(--nav-h) + 12px) }
 
-/* --- ハンバーガー強制デバッグ用(競合に勝つ) --- */
-#site-menu{
-  position: fixed;
-  right: 0; top: 0;
-  width: min(88vw, 360px);
-  height: 100dvh;
-  background: #fff;
-  transform: translateX(100%);                /* 初期はオフキャンバス */
-  transition: transform .25s ease;
-  z-index: 1000;
-}
-
-/* 開いたら必ず出す（他のCSSに勝つ） */
-.site-header.nav-open #site-menu{
-  transform: translateX(0) !important;
-}
-
-.nav-toggle{
-  position: fixed;
-  top: 12px; right: 16px;
-  background: none; border: 0; cursor: pointer;
-  z-index: 1100;
-}
-
-.nav-backdrop[hidden]{ display:none !important; }
-.nav-backdrop{
-  position: fixed; inset: 0;
-  background: rgba(0,0,0,.28);
-  z-index: 900;
-}
-
-/* ヘッダー固定の分、本文が隠れないように */
-:root{ --nav-h: 64px; }
-main{ padding-top: var(--nav-h); }
-section{ scroll-margin-top: calc(var(--nav-h) + 12px); }
-
-
-/* Profile */
-.profile-wrap{ display:grid; grid-template-columns:120px 1fr; gap:16px; align-items:center; max-width:var(--max); margin:0 auto }
-.avatar{ width:120px; height:120px; border-radius:50%; object-fit:cover; border:2px solid #efe7ff }
-
-/* Header / Nav */
+/* ========== Header / Nav ========== */
 .site-header{
   position:fixed; inset:0 0 auto 0; height:var(--nav-h);
-  display:flex; align-items:center; justify-content:space-between; padding:0 16px;
-  background:rgba(255,255,255,.85); border-bottom:1px solid #eee; backdrop-filter:saturate(1.1) blur(8px);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 16px;
+  background:rgba(255,255,255,.85);
+  backdrop-filter:saturate(1.1) blur(8px);
+  border-bottom:1px solid #eee;
   z-index:1000;
 }
 .brand{ font-weight:700; letter-spacing:.04em; color:var(--brand-ink); text-decoration:none }
-.site-header .nav a{ text-decoration:none; color:var(--muted); margin-left:1rem }
-.site-header .nav a:hover{ color:var(--brand-ink) }
 
-/* Hamburger */
+/* PC: 横並び */
+.nav{ display:flex; gap:12px; align-items:center }
+.nav a{
+  text-decoration:none; color:var(--muted);
+  padding:.4rem .6rem; border-radius:10px;
+}
+.nav a:hover{ color:var(--brand-ink); background:#f7f3ff }
+.nav .lang{ padding:.25rem .6rem; border:1px solid #e5d8ff; border-radius:999px }
+
+/* ハンバーガー */
 .nav-toggle{
-  position:fixed; top:12px; right:16px; z-index:1001;
-  display:none; background:transparent; border:0; color:var(--brand-ink);
-  padding:.35rem; border-radius:10px; cursor:pointer;
+  position:fixed; top:12px; right:16px;
+  background:transparent; border:0; cursor:pointer;
+  color:var(--brand-ink); padding:.35rem; border-radius:10px;
+  display:none; z-index:1100;
 }
 .nav-toggle:focus-visible{ outline:2px solid #d7c6ff; outline-offset:2px }
 
-/* Drawer for SP */
+/* SP: ドロワー */
 @media (max-width:900px){
+  /* PC横並びを消してドロワーに切替 */
   .nav-toggle{ display:inline-flex; align-items:center; justify-content:center }
-  .site-header .nav{
-    position:fixed; right:0; top:0; height:100dvh; width:min(88vw,360px);
+  .nav{
+    position:fixed; right:0; top:0;
+    width:min(88vw,360px); height:100dvh;
     background:#fff; box-shadow:-16px 0 40px rgba(69,42,100,.18);
     transform:translateX(100%); transition:transform .25s ease;
-    padding:88px 20px 20px; display:flex; flex-direction:column; gap:12px; z-index:1000;
-  }
-  .site-header .nav a{
-    padding:.8rem 1rem; border-radius:12px; background:#faf7ff; border:1px solid #efe7ff; color:var(--brand-ink); margin-left:0;
+    padding:88px 20px 20px; flex-direction:column; gap:12px; z-index:1000;
   }
   .site-header.nav-open .nav{ transform:translateX(0) }
-  .nav-backdrop{ position:fixed; inset:0; background:rgba(0,0,0,.25); backdrop-filter:blur(1px); z-index:999 }
-  .nav-backdrop[hidden]{ display:none }
+  .nav a{
+    width:100%;
+    background:#faf7ff; border:1px solid #efe7ff; color:var(--brand-ink);
+    padding:.8rem 1rem; border-radius:12px;
+  }
 }
 
-/* Footer */
-.site-footer{ background:var(--bg-alt); padding:24px 16px; text-align:center; color:var(--muted); border-top:1px solid #e5d8ff; font-size:14px }
-.footer-nav{ margin-top:12px } .footer-nav a{ margin:0 8px; text-decoration:none; color:var(--brand-ink); font-weight:500 }
+/* 背景ブラー（JSが hidden を外す） */
+.nav-backdrop[hidden]{ display:none !important }
+.nav-backdrop{
+  position:fixed; inset:0; background:rgba(0,0,0,.28);
+  backdrop-filter:blur(1px); z-index:900;
+}
+
+/* ========== Layout / Sections ========== */
+.section{ padding:72px 0 }
+main > .section + .section{ margin-top:var(--gap-sec) }
+.section.alt{ background:var(--bg-alt); border-radius:var(--radius) }
+
+h1{ font-size:clamp(28px,4vw,44px); margin:.2em 0 1rem }
+h2{ font-size:clamp(22px,3vw,30px); margin:var(--gap-h2-top) 0 var(--gap-h2-bottom) }
+h3{ margin:28px 0 12px }
+
+/* 文章の途中区切りに使う“間” */
+.section-gap{ margin:32px 0 }
+
+/* ========== Hero / Profile ========== */
+.profile-wrap{
+  max-width:800px; margin:0 auto;
+  display:grid; grid-template-columns:120px 1fr; gap:16px; align-items:center;
+  text-align:left;
+}
+.avatar{
+  width:120px; height:120px; border-radius:50%; object-fit:cover;
+  border:2px solid #efe7ff;
+}
+.lead{ color:var(--muted); max-width:60ch }
+
+@media (max-width:560px){
+  .profile-wrap{ grid-template-columns:1fr; text-align:center }
+  .avatar{ margin:0 auto }
+}
+
+/* ========== Buttons ========== */
+.btn{
+  display:inline-block; padding:.75rem 1.1rem; border-radius:999px;
+  background:var(--brand); color:#fff; text-decoration:none; box-shadow:var(--shadow);
+  transition:transform .2s ease, box-shadow .2s ease, opacity .2s ease;
+  font-weight:700;
+}
+.btn:hover{ transform:translateY(-2px); box-shadow:0 10px 28px rgba(69,42,100,.18) }
+.btn.ghost{ background:transparent; color:var(--brand-ink); border:1px solid #e5d8ff }
+
+/* ========== Lists ========== */
+.list{ margin:0 0 1rem; padding-left:1rem }
+.news{ list-style:none; padding:0; margin:0 }
+.news li{ padding:.4rem 0; border-bottom:1px dashed #e9e2f7 }
+.news time{ color:var(--muted); margin-right:.5rem }
+
+/* ========== Footer ========== */
+.site-footer{
+  background:var(--bg-alt); padding:24px 16px; text-align:center;
+  color:var(--muted); border-top:1px solid #e5d8ff; font-size:14px; margin-top:40px;
+}
+.footer-nav{ margin-top:12px }
+.footer-nav a{ margin:0 8px; text-decoration:none; color:var(--brand-ink); font-weight:500 }
 .footer-nav a:hover{ color:var(--brand); text-decoration:underline }
 
-/* Responsive tweaks */
-@media (max-width:600px){
-  .profile-wrap{ grid-template-columns:80px 1fr }
-  .avatar{ width:80px; height:80px }
+/* ========== Small tweaks ========== */
+@media (max-width:720px){
+  :root{
+    --gap-sec:40px;
+    --gap-h2-top:22px;
+    --gap-h2-bottom:12px;
+  }
 }
-
-/* デバッグ用：開いたら必ず出す */
-.site-header.nav-open .nav{ transform: translateX(0) !important; }
-.nav-toggle{ display:inline-flex !important; }
-
-.section-gap {
-  margin-bottom: 32px; /* 必要に応じてここだけ変えればOK */
-}
-
-
