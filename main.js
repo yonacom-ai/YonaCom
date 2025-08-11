@@ -1,17 +1,43 @@
-// main.js: ヘッダーやリンクの軽い動きをつけるスクリプト
+document.addEventListener('DOMContentLoaded', function(){
+  var header   = document.querySelector('.site-header');
+  if(!header) return;
+  var btn      = header.querySelector('.nav-toggle');
+  var nav      = header.querySelector('#site-menu');
+  var backdrop = header.querySelector('.nav-backdrop');
 
-// スクロール時にヘッダーに影を付ける
-const header = document.querySelector('.site-header');
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 2) {
-    header.style.boxShadow = '0 6px 20px rgba(0,0,0,.06)';
-  } else {
-    header.style.boxShadow = 'none';
+  if(!btn || !nav || !backdrop){
+    console.warn('[nav] 要素が見つからないよ', {btn:!!btn, nav:!!nav, backdrop:!!backdrop});
+    return;
   }
-});
 
-// 外部リンクは新しいタブで開くようにする
-document.querySelectorAll('a[href^="http"]').forEach(a => {
-  a.setAttribute('target', '_blank');
-  a.setAttribute('rel', 'noopener');
+  function lock(){ document.documentElement.style.overflow = 'hidden'; }
+  function unlock(){ document.documentElement.style.overflow = ''; }
+  function open(){
+    header.classList.add('nav-open');
+    btn.setAttribute('aria-expanded','true');
+    nav.setAttribute('aria-hidden','false');
+    backdrop.removeAttribute('hidden');
+    lock();
+    var first = nav.querySelector('a'); if(first) first.focus();
+  }
+  function close(){
+    header.classList.remove('nav-open');
+    btn.setAttribute('aria-expanded','false');
+    nav.setAttribute('aria-hidden','true');
+    backdrop.setAttribute('hidden','');
+    unlock();
+    btn.focus();
+  }
+  function toggle(){ header.classList.contains('nav-open') ? close() : open(); }
+
+  btn.addEventListener('click', toggle);
+  backdrop.addEventListener('click', close);
+  window.addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
+
+  nav.addEventListener('click', function(e){ if(e.target.closest('a')) close(); });
+
+  // 幅を広げたら保険で閉じる
+  window.addEventListener('resize', function(){
+    if(window.innerWidth > 900 && header.classList.contains('nav-open')) close();
+  });
 });
