@@ -9,39 +9,14 @@
 
   <!-- Google Fonts: Rounded M+ -->
   <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/main.css">
 
-  <style>
-    html { scroll-behavior: smooth; }
-    :root { --nav-h: 64px; } /* 固定ヘッダーの高さに合わせて */
-    /* 全体をRounded M+に（確実に当てる） */
-    body, h1, h2, h3, h4, .btn, .nav a { 
-      font-family: 'M PLUS Rounded 1c','Noto Sans JP',sans-serif;
-    }
-    section { scroll-margin-top: calc(var(--nav-h) + 12px); margin-bottom: 3rem; }
-
-    .pill{ display:inline-block; padding:.35rem .7rem; border:1px solid #e5d8ff; border-radius:999px; background:#fff; color:var(--brand-ink); font-size:.9rem }
-    .profile-wrap{ display:grid; grid-template-columns:120px 1fr; gap:16px; align-items:center; max-width:var(--max); margin:0 auto }
-    .avatar{ width:120px; height:120px; border-radius:50%; object-fit:cover; border:2px solid #efe7ff }
-    .leadwide{ max-width:60ch; margin:.5rem 0 0; color:var(--muted) }
-
-    /* プロフィール本文セクション */
-    .profile-details{ max-width:900px; margin:0 auto; padding:2em; line-height:1.8; }
-    .profile-details h2{ margin-top:2.5em; border-bottom:2px solid #eee; padding-bottom:.5em }
-    .profile-details h2:first-of-type{ margin-top:0 }
-    .profile-details h3{ margin-top:2em; border-bottom:2px solid #f3edf9; padding-bottom:.4em }
-    .profile-details ul{ margin:.8em 0 1.5em 1.2em }
-    .profile-details p{ margin:.8em 0 1em }
-
-    /* 固定ヘッダー分の余白（ヘッダーをposition:fixedにしてる場合） */
-    main { padding-top: var(--nav-h); }
-  </style>
+  <!-- シンプル構成：同じ階層のCSS -->
+  <link rel="stylesheet" href="main.css">
 </head>
 <body>
 
-<!-- headerを丸ごと置き換え -->
 <header class="site-header" role="banner">
-  <a class="brand" href="./">YonaCom</a>
+  <a class="brand" href="./">YONASHI COMPOTE</a>
 
   <!-- ハンバーガー（右上固定） -->
   <button class="nav-toggle" aria-controls="site-menu" aria-expanded="false" aria-label="メニュー">
@@ -50,8 +25,8 @@
     </svg>
   </button>
 
-  <!-- ナビ（PC横並び／SPはドロワー） -->
-  <nav id="site-menu" class="nav" aria-label="メイン">
+  <!-- ナビ（PC横並び／SPドロワー） -->
+  <nav id="site-menu" class="nav" aria-label="メイン" aria-hidden="true">
     <a href="#about">自己紹介</a>
     <a href="#roles">肩書・スキル</a>
     <a href="#co-create">共創研究について</a>
@@ -59,30 +34,26 @@
     <a href="#policy">ポリシー</a>
     <a href="#sns">SNS</a>
     <a href="#contact">お問い合せ</a>
-    <a class="lang" href="en/">EN</a>
   </nav>
 
   <!-- 背景（クリックで閉じる） -->
   <div class="nav-backdrop" hidden></div>
 </header>
 
-<!-- できれば </body> 直前。defer つきでOK -->
-<script src="assets/js/main.js" defer></script>
-
 <main id="top">
-
-  <!-- Hero / Profile（自己紹介） -->
+  <!-- Hero -->
   <section id="about" class="section alt">
     <div class="profile-wrap">
-      <img src="img/-fzsotj.jpg" alt="ようなのアイコン">
+      <!-- 画像は img/ に。ファイル名を合わせてね -->
+      <img class="avatar" src="img/avatar.jpg" alt="ようなのアイコン">
       <div>
-        <h1 style="margin:.2rem 0 .2rem">ようなしこんぽーと<br>（ような）</h1>
-        <p class="pill">マルチクリエイター / AI共創研究者</p>
-        <p class="leadwide">
+        <h1>ようなしこんぽーと（ような）</h1>
+        <p class="pill">マルチクリエイター／AI共創研究者</p>
+        <p class="lead">
           夢のような世界を、さまざまなかたちで表現しています。Web・ハンドメイド・音楽・映像・文章・キャラクターデザインまで、
           「自分だけの創作」を追求中。現在はAIとの共創をテーマにした自主研究「ようなlab.」を進行中。
         </p>
-        <div style="margin-top:12px">
+        <div class="cta">
           <a class="btn" href="https://hisa-design.github.io/portfolio/" target="_blank" rel="noopener">公式HPへ</a>
           <a class="btn ghost" href="#contact">お問い合わせ</a>
         </div>
@@ -90,126 +61,48 @@
     </div>
   </section>
 
-  <!-- 肩書・スキル -->
-  <section id="roles" class="section profile-details">
+  <!-- セクション：中身は好きに編集してね -->
+  <section id="roles" class="section">
     <h2>主な肩書き一覧</h2>
-    <p>Webデザイナー｜UI/UX設計・実装<br>
-      ハンドメイド作家｜ビーズ・布小物・編み物<br>
-      イラストレーター｜キャラクター・グッズ展開<br>
-      映像編集者｜YouTubeサムネ・ショート動画制作<br>
-      Vライバー経験者｜配信用ビジュアル・構成演出<br>
-      AI共創研究者｜創作×AIの感性可視化・論文執筆中<br>
-      ボイス・音声作品制作者｜AI音声＆AI音楽（VOICEVOX / Suno）活用中<br>
-      詩・物語・台本クリエイター｜感性と世界観を言葉に</p>
-
-    <h2>スキル</h2>
-    <p>わたし「ような」は、複数のジャンルにまたがるスキルを活かし、創作活動・研究・表現を行っています。</p>
-
-    <h3>🖥 Web・デジタル系</h3>
-    <ul>
-      <li>Webデザイン（HTML / CSS / JavaScript）</li>
-      <li>Canva / Figma / STUDIO 制作</li>
-      <li>GitHub Pages サイト構築</li>
-      <li>Googleスプレッドシート活用（連携・自動更新など）</li>
-      <li>動画編集（CapCut / YouTube運用）</li>
-      <li>Suno.AI によるAI音楽制作</li>
-      <li>VOICEVOX（AIボイス）によるナレーション制作</li>
-      <li>Tally.so / Googleフォームによるアンケート設計</li>
-    </ul>
-
-    <h3>🎨 創作・デザイン</h3>
-    <ul>
-      <li>キャラクターデザイン（図鑑形式で統一化）</li>
-      <li>ハンドメイド（ビーズ・布小物・編み物）</li>
-      <li>イラスト制作（MV / キャラクター / アイコン）</li>
-      <li>ZINE・PDF制作（A6 / B5など印刷前提フォーマット）</li>
-      <li>ポスター / フライヤー / 名刺デザイン</li>
-      <li>創作ポリシー策定・権利管理</li>
-    </ul>
-
-    <h3>📚 研究・分析・発信</h3>
-    <ul>
-      <li>AIとの共創に関する自主研究（ような式）</li>
-      <li>アンケート設計・分析（VAS法・感情マッピング）</li>
-      <li>noteによるエッセイ / 研究発信</li>
-      <li>感性を可視化する図解制作（MAP / チャート）</li>
-    </ul>
+    <p>Webデザイナー｜ハンドメイド作家｜イラストレーター｜映像編集者｜Vライバー経験者｜AI共創研究者｜音声作品制作者｜詩・物語・台本クリエイター</p>
   </section>
 
-  <!-- プロジェクト -->
+  <section id="co-create" class="section">
+    <h2>共創研究について</h2>
+    <p>“AI×創作”のリアルな体験や感情を可視化・言語化。アンケート調査・図解・論文化まで自己主導で実施中。</p>
+  </section>
+
   <section id="projects" class="section">
     <h2>プロジェクト</h2>
-    <p><strong>🧪 ようなlab.</strong><br>
-      AIと創作をめぐる感性研究室。<br>
-      “AI×創作”のリアルな体験や感情を可視化・言語化。<br>
-      アンケート調査・図解・論文化までを自己主導で実施。<br>
-      noteにて研究ログ・記事を定期発信中。
-    </p>
-    <p><strong>🍐 ようなしこんぽーと</strong><br>
-      夢かわ世界の創作図鑑プロジェクト。<br>
-      オリジナルキャラクターを中心とした世界観創作。<br>
-      デザイン・物語・グッズ展開・Web表現を一貫して制作。<br>
-      SUZURI等で関連グッズを販売中。
-    </p>
+    <ul class="list">
+      <li>🧪 ようなlab.</li>
+      <li>🍐 ようなしこんぽーと図鑑</li>
+    </ul>
   </section>
 
-  <!-- 共創研究について -->
-  <section id="co-create" class="section alt profile-details">
-    <h2>共創研究について（ようなlab.）</h2>
-    <h3>🧪 取り組み</h3>
-    <ul>
-      <li>アンケート調査と感情マップ（VAS法）</li>
-      <li>対話記録を使った思考・体験の分析</li>
-      <li>創作×AIの共鳴検証（モデル化／図解）</li>
-    </ul>
-    <h3>📝 発信</h3>
-    <ul>
-      <li>note 連載「YonaLab研究室」</li>
-      <li>図解・MAP公開（Canva＋スプレッドシート）</li>
-      <li>PDF提出（大学向け）／VTuber的プレゼン実験</li>
-    </ul>
-    <p><a class="btn" href="https://note.com/yona_dreammaker" target="_blank" rel="noopener">研究ログ（note）を見る</a></p>
-  </section>
-
-  <!-- ポリシー -->
   <section id="policy" class="section">
-    <h2>活動スタンス・創作ポリシー</h2>
-
-    <h3>【1】感性重視 × 多様な表現</h3>
-    <p>ジャンル・手法に縛られない自由な創作を大切に。</p>
-
-    <h3>【2】AIとの共創は、対話から</h3>
-    <p>AIを「ともに創る存在」として捉え、感情の可視化と記録を重視。</p>
-
-    <h3>【3】権利について</h3>
-    <p>著作権は基本的に「ような」に帰属。二次創作・紹介・引用はOK。商用利用や再配布は要相談。</p>
-
-    <h3>【4】安心して関われる場づくり</h3>
-    <p>癒しや気づきのきっかけになる場所を目指し、やさしいつながりを大切に。</p>
-
-    <p><a href="https://note.com/yona_dreammaker/n/nc79208dc5e50" class="btn" target="_blank" rel="noopener noreferrer">詳細はこちら</a></p>
+    <h2>ポリシー</h2>
+    <p>【1】感性重視 × 多様な表現 ／ 【2】AIとの共創は対話から ／ 【3】権利と引用 ／ 【4】やさしいつながり</p>
+    <p><a href="https://note.com/yona_dreammaker" class="btn" target="_blank" rel="noopener">詳細はこちら</a></p>
   </section>
 
-  <!-- SNS -->
-  <section id="sns" class="section alt">
+  <section id="sns" class="section">
     <h2>SNS</h2>
-    <ul>
-      <li><a href="https://note.com/yona_dreammaker" target="_blank" rel="noopener">note（研究・エッセイ）</a></li>
-      <li><a href="https://twitter.com/yonasi_comport" target="_blank" rel="noopener">X（公式）@yonasi_comport</a></li>
-      <li><a href="https://x.com/yona_ai_creater" target="_blank" rel="noopener">X（中の人）@yona_ai_creater</a></li>
-      <li><a href="https://youtube.com/channel/UCM4PNE3fIP3EyuMDGed588A" target="_blank" rel="noopener">YouTube</a></li>
+    <ul class="list">
+      <li><a href="https://note.com/yona_dreammaker" target="_blank">note</a></li>
+      <li><a href="https://twitter.com/yonasi_comport" target="_blank">X（公式）</a></li>
+      <li><a href="https://x.com/yona_ai_creater" target="_blank">X（制作記録）</a></li>
+      <li><a href="https://youtube.com/channel/UCM4PNE3fIP3EyuMDGed588A" target="_blank">YouTube</a></li>
     </ul>
   </section>
 
-  <!-- お問い合せ -->
   <section id="contact" class="section">
     <h2>お問い合わせ</h2>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLScD-uOgUtrZPBErNJH1_yUU0N4UYqnacTmgl1dXKjVELJgr9Q/viewform?usp=dialog" 
-       target="_blank" rel="noopener noreferrer" class="btn">
+    <a class="btn" target="_blank" rel="noopener"
+       href="https://docs.google.com/forms/d/e/1FAIpQLScD-uOgUtrZPBErNJH1_yUU0N4UYqnacTmgl1dXKjVELJgr9Q/viewform?usp=dialog">
        お問い合わせはこちらから
     </a>
   </section>
-
 </main>
 
 <footer class="site-footer">
@@ -225,10 +118,7 @@
   </nav>
 </footer>
 
+<!-- 同じ階層のJS。defer必須！ -->
+<script src="main.js" defer></script>
 </body>
 </html>
-
-
-
-
-
