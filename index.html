@@ -38,32 +38,10 @@
 
   <!-- 背景（クリックで閉じる） -->
   <div class="nav-backdrop" hidden></div>
-  <!-- HTML内どこか（header内）に存在すること -->
-<button class="nav-toggle">☰</button>
-<nav id="site-menu" class="nav">メニュー</nav>
-<div class="nav-backdrop" hidden></div>
-
-<style>
-.nav{ position:fixed; right:0; top:0; width:80vw; height:100dvh; background:#fff; transform:translateX(100%); transition:.25s }
-.site-header.nav-open .nav{ transform:translateX(0) }
-.nav-toggle{ position:fixed; top:12px; right:16px }
-</style>
-
-<script>
-document.addEventListener('DOMContentLoaded',function(){
-  var h=document.querySelector('.site-header')||document.body;
-  var b=document.querySelector('.nav-toggle');
-  var n=document.querySelector('#site-menu');
-  var d=document.querySelector('.nav-backdrop');
-  if(!b||!n||!d){console.warn('要素不足');return;}
-  function open(){ h.classList.add('nav-open'); d.hidden=false; }
-  function close(){ h.classList.remove('nav-open'); d.hidden=true; }
-  b.addEventListener('click', ()=> h.classList.contains('nav-open')?close():open());
-  d.addEventListener('click', close);
-});
-</script>
-
 </header>
+
+<!-- これを </body> の直前に必ず入れてね -->
+<script src="assets/js/main.js" defer></script>
 
 <main id="top">
   <!-- Hero -->
@@ -73,7 +51,7 @@ document.addEventListener('DOMContentLoaded',function(){
       <img class="avatar" src="img/04.jpg" alt="ようなのアイコン">
       <div>
         <h1>ようなしこんぽーと（ような）</h1>
-        <p class="pill">マルチクリエイター／AI共創研究者</p>
+        <p class="pill">マルチクリエイター/AI共創研究者</p>
         <p class="lead">
           夢のような世界を、さまざまなかたちで表現しています。Web・ハンドメイド・音楽・映像・文章・キャラクターデザインまで、
           「自分だけの創作」を追求中。現在はAIとの共創をテーマにした自主研究「ようなlab.」を進行中。
@@ -101,34 +79,11 @@ document.addEventListener('DOMContentLoaded',function(){
     <h2>プロジェクト</h2>
     <ul class="list">
       <li>🧪 ようなlab.</li>
-     <section> <br>🌟ような式 共創研究とは？
-🧪 AIと感性を重ねて、世界をひらく研究スタイル
-「ようなlab.」では、<br>
-
-アンケートによる感情分析（VAS法）<br>
-
-感情マップや共創モデルの可視化<br>
-
-創作実践＋論文化の融合<br>
-などを通じて、<br>
-AIとの「共創」という体験を、研究・発信しています。<br>
+      <section> <br>🌟ような式 共創研究とは？🧪 AIと感性を重ねて、世界をひらく研究スタイル「ようなlab.」では、<br>アンケートによる感情分析（VAS法）<br>感情マップや共創モデルの可視化<br>創作実践＋論文化の融合<br>などを通じて、<br>AIとの「共創」という体験を、研究・発信しています。<br> </section>
       <li>🍐 ようなしこんぽーと図鑑</li>
-     <section></section> <br>
-夢かわいい世界観のオリジナルキャラクター図鑑。 <br>
-「ような」が生み出す、幻想的な三種族と案内人の物語。 <br>
-
-フィリューム（星空を泳ぐ金魚） <br>
-
-ユニレーヴ（虹を駆ける仔馬） <br>
-
-クロメル（雲をまとう時のフクロウ） <br>
-
-ような（図鑑をひらく案内人） <br>
-
-グッズ展開・世界観設定・キャラクターデザインすべて担当。 <br>
-イベントや展示、オンライン販売などを通じて発信中。 <br>
+      <section>夢かわいい世界観のオリジナルキャラクター図鑑。 <br>「ような」が生み出す、幻想的な三種族と案内人の物語。 <br>フィリューム（星空を泳ぐ金魚） <br>ユニレーヴ（虹を駆ける仔馬） <br>クロメル（雲をまとう時のフクロウ） <br>ような（図鑑をひらく案内人） <br>グッズ展開・世界観設定・キャラクターデザインすべて担当。 <br>イベントや展示、オンライン販売などを通じて発信中。 <br> </section>
     </ul>
-  </section></section>
+  </section>
 
   <section id="policy" class="section">
     <h2>ポリシー</h2>
@@ -172,8 +127,3 @@ AIとの「共創」という体験を、研究・発信しています。<br>
 <script src="main.js" defer></script>
 </body>
 </html>
-
-
-
-
-
