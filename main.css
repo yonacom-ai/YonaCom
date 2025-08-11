@@ -82,3 +82,7 @@ h2{ font-size:clamp(22px,3vw,30px); margin:0 0 16px }
   .profile-wrap{ grid-template-columns:80px 1fr }
   .avatar{ width:80px; height:80px }
 }
+
+/* デバッグ用：開いたら必ず出す */
+.site-header.nav-open .nav{ transform: translateX(0) !important; }
+.nav-toggle{ display:inline-flex !important; }
