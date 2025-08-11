@@ -234,3 +234,42 @@ h3{ margin:28px 0 12px }
   .site-header.nav-open #site-menu{ transform: translateX(0) !important; }
 }
 
+.sns-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.sns-buttons a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 9999px;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transition: background 0.25s, transform 0.2s;
+}
+
+.sns-buttons a:hover {
+  transform: translateY(-2px);
+}
+
+/* SNSブランドカラー */
+.sns-note { background: #41c9b4; }
+.sns-note:hover { background: #35a395; }
+
+.sns-x { background: #000000; }
+.sns-x:hover { background: #222; }
+
+.sns-yt { background: #ff0000; }
+.sns-yt:hover { background: #cc0000; }
+
+.sns-buttons i {
+  font-size: 1.2em;
+}
+
+
