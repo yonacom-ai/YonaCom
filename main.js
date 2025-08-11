@@ -4,12 +4,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const nav      = document.querySelector('#site-menu');
   const backdrop = document.querySelector('.nav-backdrop');
 
-  // 存在チェック
-  [['.site-header',header],['.nav-toggle',btn],['#site-menu',nav],['.nav-backdrop',backdrop]]
-    .forEach(([k,v]) => console.log('chk', k, !!v));
-  if(!header || !btn || !nav || !backdrop) return;
+  if(!header || !btn || !nav || !backdrop){
+    console.warn('[nav] 要素が見つからない:', {header,btn,nav,backdrop});
+    return;
+  }
 
-  const lock = () => { document.documentElement.style.overflow = 'hidden'; };
+  const lock   = () => { document.documentElement.style.overflow = 'hidden'; };
   const unlock = () => { document.documentElement.style.overflow = ''; };
 
   const open = () => {
@@ -32,10 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
   backdrop.addEventListener('click', close);
   window.addEventListener('keydown', e => { if(e.key === 'Escape') close(); });
 
-  // メニュー内リンククリックで閉じる
+  // メニュー内リンクで閉じる
   nav.addEventListener('click', e => { if(e.target.closest('a')) close(); });
-
-  // 手動デバッグ用（F12→Consoleで叩ける）
-  window.__navOpen  = open;
-  window.__navClose = close;
 });
