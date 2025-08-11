@@ -10,35 +10,38 @@
   <!-- Google Fonts: Rounded M+ -->
   <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
 
-  <!-- シンプル構成：同じ階層のCSS -->
+  <!-- 同じ階層のCSS -->
   <link rel="stylesheet" href="main.css">
+
+  <!-- 最低限のドロワー用スタイル（競合に勝つ用） -->
   <style>
-    .nav {
-      position: fixed;
-      right: 0;
-      top: 0;
-      width: 80vw;
-      height: 100dvh;
-      background: #fff;
+    #site-menu{
+      position: fixed; right: 0; top: 0;
+      width: min(88vw, 360px); height: 100dvh;
+      background:#fff;
       transform: translateX(100%);
-      transition: .25s;
+      transition: transform .25s ease;
+      z-index: 1000;
+      padding: 88px 20px 20px;           /* メニュー内余白 */
+      display: flex; flex-direction: column; gap: 12px;
     }
-    .site-header.nav-open .nav {
-      transform: translateX(0);
+    .site-header.nav-open #site-menu{ transform: translateX(0) !important; }
+
+    .nav-toggle{
+      position: fixed; top: 12px; right: 16px;
+      background: none; border: 0; cursor: pointer;
+      z-index: 1100;
     }
-    .nav-toggle {
-      position: fixed;
-      top: 12px;
-      right: 16px;
-      background: none;
-      border: none;
-      cursor: pointer;
+
+    .nav-backdrop[hidden]{ display:none !important; }
+    .nav-backdrop{
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.28);
+      z-index: 900;
     }
-    .nav-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.3);
-    }
+
+    /* セクション間の“間”をここで調整（共創→図鑑の間専用） */
+    .section-gap{ margin: 32px 0; }
   </style>
 </head>
 <body>
@@ -46,114 +49,32 @@
 <header class="site-header" role="banner">
   <a class="brand" href="./">YONASHI COMPOTE</a>
 
-  <!-- ハンバーガー（右上固定） -->
- <!-- ハンバーガー -->
-<button class="nav-toggle" aria-controls="site-menu" aria-expanded="false" aria-label="メニュー">
-  <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true">
-    <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-  </svg>
-</button>
+  <!-- ハンバーガー（右上固定／1つだけ） -->
+  <button class="nav-toggle" aria-controls="site-menu" aria-expanded="false" aria-label="メニュー">
+    <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
 
-<!-- ナビ -->
-<nav id="site-menu" class="nav" aria-label="メイン" aria-hidden="true">
-  <a href="#about">自己紹介</a>
-  <a href="#roles">肩書・スキル</a>
-  <a href="#co-create">共創研究について</a>
-  <a href="#projects">プロジェクト</a>
-  <a href="#policy">ポリシー</a>
-  <a href="#sns">SNS</a>
-  <a href="#contact">お問い合せ</a>
-</nav>
+  <!-- ナビ（PC横並びは main.css 側で、SPは上のドロワーCSS） -->
+  <nav id="site-menu" class="nav" aria-label="メイン" aria-hidden="true">
+    <a href="#about">自己紹介</a>
+    <a href="#roles">肩書・スキル</a>
+    <a href="#co-create">共創研究について</a>
+    <a href="#projects">プロジェクト</a>
+    <a href="#policy">ポリシー</a>
+    <a href="#sns">SNS</a>
+    <a href="#contact">お問い合せ</a>
+  </nav>
 
-<!-- 背景 -->
-<div class="nav-backdrop" hidden></div>
-
-<style>
-.nav {
-  position: fixed;
-  right: 0;
-  top: 0;
-  width: 80vw;
-  height: 100dvh;
-  background: #fff;
-  transform: translateX(100%);
-  transition: .25s;
-  z-index: 1000;
-}
-.site-header.nav-open .nav {
-  transform: translateX(0);
-}
-.nav-toggle {
-  position: fixed;
-  top: 12px;
-  right: 16px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  z-index: 1100;
-}
-.nav-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.3);
-  z-index: 900;
-}
-</style>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const header = document.querySelector('.site-header');
-  const toggleBtn = document.querySelector('.nav-toggle');
-  const backdrop = document.querySelector('.nav-backdrop');
-
-  function openNav() {
-    header.classList.add('nav-open');
-    backdrop.hidden = false;
-  }
-  function closeNav() {
-    header.classList.remove('nav-open');
-    backdrop.hidden = true;
-  }
-
-  toggleBtn.addEventListener('click', () => {
-    header.classList.contains('nav-open') ? closeNav() : openNav();
-  });
-  backdrop.addEventListener('click', closeNav);
-});
-</script>
-
-  <!-- HTML内どこか（header内）に存在すること -->
-<button class="nav-toggle">☰</button>
-<nav id="site-menu" class="nav">メニュー</nav>
-<div class="nav-backdrop" hidden></div>
-
-<style>
-.nav{ position:fixed; right:0; top:0; width:80vw; height:100dvh; background:#fff; transform:translateX(100%); transition:.25s }
-.site-header.nav-open .nav{ transform:translateX(0) }
-.nav-toggle{ position:fixed; top:12px; right:16px }
-</style>
-
-<script>
-document.addEventListener('DOMContentLoaded',function(){
-  var h=document.querySelector('.site-header')||document.body;
-  var b=document.querySelector('.nav-toggle');
-  var n=document.querySelector('#site-menu');
-  var d=document.querySelector('.nav-backdrop');
-  if(!b||!n||!d){console.warn('要素不足');return;}
-  function open(){ h.classList.add('nav-open'); d.hidden=false; }
-  function close(){ h.classList.remove('nav-open'); d.hidden=true; }
-  b.addEventListener('click', ()=> h.classList.contains('nav-open')?close():open());
-  d.addEventListener('click', close);
-});
-</script>
-
+  <!-- 背景（クリックで閉じる） -->
+  <div class="nav-backdrop" hidden></div>
 </header>
 
 <main id="top">
   <!-- Hero -->
   <section id="about" class="section alt">
     <div class="profile-wrap">
-      <!-- 画像は img/ に。ファイル名を合わせてね -->
       <img class="avatar" src="img/04.jpg" alt="ようなのアイコン">
       <div>
         <h1>ようなしこんぽーと（ような）</h1>
@@ -181,30 +102,40 @@ document.addEventListener('DOMContentLoaded',function(){
   </section>
 
   <section id="projects" class="section">
-
     <h2>プロジェクト</h2>
+
+    <!-- ようなlab. -->
     <ul class="list">
       <li>🧪 ようなlab.</li>
-      <section><br>🌟ような式 共創研究とは？
-🧪 AIと感性を重ねて、世界をひらく研究スタイル
-「ようなlab.」では、<br>
-アンケートによる感情分析（VAS法）<br>
-感情マップや共創モデルの可視化<br>
-創作実践＋論文化の融合<br>
-などを通じて、<br>
-AIとの「共創」という体験を、研究・発信しています。<br>
-   <div style="margin-bottom: 32px;"></div>
-      <li>🍐 ようなしこんぽーと図鑑</li>
-      <section></section><br>
-夢かわいい世界観のオリジナルキャラクター図鑑。<br>
-「ような」が生み出す、幻想的な三種族と案内人の物語。<br>
-フィリューム（星空を泳ぐ金魚）<br><br>
-ユニレーヴ（虹を駆ける仔馬）<br><br>
-クロメル（雲をまとう時のフクロウ）<br>
-ような（図鑑をひらく案内人）<br>
-グッズ展開・世界観設定・キャラクターデザインすべて担当。<br>
-イベントや展示、オンライン販売などを通じて発信中。<br>
     </ul>
+    <div class="proj-text">
+      <br>🌟ような式 共創研究とは？<br>
+      🧪 AIと感性を重ねて、世界をひらく研究スタイル<br>
+      「ようなlab.」では、<br>
+      アンケートによる感情分析（VAS法）<br>
+      感情マップや共創モデルの可視化<br>
+      創作実践＋論文化の融合<br>
+      などを通じて、<br>
+      AIとの「共創」という体験を、研究・発信しています。<br>
+    </div>
+
+    <!-- ここに“間” -->
+    <div class="section-gap"></div>
+
+    <!-- 図鑑 -->
+    <ul class="list">
+      <li>🍐 ようなしこんぽーと図鑑</li>
+    </ul>
+    <div class="proj-text">
+      夢かわいい世界観のオリジナルキャラクター図鑑。<br>
+      「ような」が生み出す、幻想的な三種族と案内人の物語。<br><br>
+      フィリューム（星空を泳ぐ金魚）<br><br>
+      ユニレーヴ（虹を駆ける仔馬）<br><br>
+      クロメル（雲をまとう時のフクロウ）<br>
+      ような（図鑑をひらく案内人）<br><br>
+      グッズ展開・世界観設定・キャラクターデザインすべて担当。<br>
+      イベントや展示、オンライン販売などを通じて発信中。<br>
+    </div>
   </section>
 
   <section id="policy" class="section">
@@ -249,9 +180,3 @@ AIとの「共創」という体験を、研究・発信しています。<br>
 <script src="main.js" defer></script>
 </body>
 </html>
-
-
-
-
-
-
