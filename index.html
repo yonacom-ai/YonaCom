@@ -38,6 +38,31 @@
 
   <!-- 背景（クリックで閉じる） -->
   <div class="nav-backdrop" hidden></div>
+  <!-- HTML内どこか（header内）に存在すること -->
+<button class="nav-toggle">☰</button>
+<nav id="site-menu" class="nav">メニュー</nav>
+<div class="nav-backdrop" hidden></div>
+
+<style>
+.nav{ position:fixed; right:0; top:0; width:80vw; height:100dvh; background:#fff; transform:translateX(100%); transition:.25s }
+.site-header.nav-open .nav{ transform:translateX(0) }
+.nav-toggle{ position:fixed; top:12px; right:16px }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var h=document.querySelector('.site-header')||document.body;
+  var b=document.querySelector('.nav-toggle');
+  var n=document.querySelector('#site-menu');
+  var d=document.querySelector('.nav-backdrop');
+  if(!b||!n||!d){console.warn('要素不足');return;}
+  function open(){ h.classList.add('nav-open'); d.hidden=false; }
+  function close(){ h.classList.remove('nav-open'); d.hidden=true; }
+  b.addEventListener('click', ()=> h.classList.contains('nav-open')?close():open());
+  d.addEventListener('click', close);
+});
+</script>
+
 </header>
 
 <main id="top">
@@ -122,5 +147,6 @@
 <script src="main.js" defer></script>
 </body>
 </html>
+
 
 
